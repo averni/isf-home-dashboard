@@ -1,243 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-  <data>
-    <record id="view_isf_home_dashboard_start_homeboard" model="ir.ui.view">
-        <field name="name">isf.home.dashboard.action.start.homeboard</field>
-        <field name="model">isf.home.dashboard.action</field>
-        <field name="priority">100</field>
-        <field name="arch" type="xml">
-            <form version="7.0" string="Home Dashboard" title="Home Dashboard" edit="false" create="false" delete="false">
-                <isf-home-dashboard collapse="false" sortable="false" />
-            </form>
-        </field>
-    </record>
- 
-    <record id="view_isf_home_dashboard_start" model="ir.ui.view">
-        <field name="name">isf.home.dashboard.action.start.kanban</field>
-        <field name="model">isf.home.dashboard.action</field>
-        <field name="arch" type="xml">
-            <!--kanban create="false" delete="false" default_group_by="group" edit="false" quick_create="false"-->
-            <kanban create="false" delete="false" edit="false" quick_create="false">
-                <field name="icon"/>
-                <field name="name"/>
-                <field name="action"/>
-                <field name="description"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_module_vignette" style="min-height: 88px;">
-                            <a type="object" name="route_to" > 
-                                <img class="oe_module_icon" t-att-src="kanban_image('isf.home.dashboard.action', 'icon', record.id.value)" />
-                            </a>
-                            <div class="oe_module_desc oe_loempia_details">
-                                <h4>
-                                    <a type="object" name="route_to" >
-                                        <field name="name"/>
-                                    </a>
-                                </h4>
-                                <p class="oe_module_name">
-                                    <field name="description"/>
-                                </p>
-                            </div>
-                        <!--button name='route_to' string="Run" type="object" icon="gtk-execute"/-->
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record id="action_isf_home_dashboard_start" model="ir.actions.act_window" >
-        <field name="name">Start</field>
-        <!--field name="res_model">ir.actions.actions</field-->
-        <field name="res_model">isf.home.dashboard.action</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="view_isf_home_dashboard_start_homeboard"/>
-    </record>
-
-    <record model="ir.ui.view" id="view_isf_home_dashboard_action_search">
-            <field name="name">isf.home.dashboard.action.search</field>
+    <data>
+        <record id="view_isf_home_dashboard_start" model="ir.ui.view">
+            <field name="name">isf.home.dashboard.action.start.kanban</field>
             <field name="model">isf.home.dashboard.action</field>
             <field name="arch" type="xml">
-                <search string="Actions">
+                <!--kanban create="false" delete="false" default_group_by="group" edit="false" quick_create="false"-->
+                <kanban create="false" delete="false" edit="false" quick_create="false">
+                    <field name="icon"/>
+                    <field name="name"/>
+                    <field name="action"/>
+                    <field name="description"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_module_vignette" style="min-height: 88px;">
+                                <a type="object" name="route_to" > 
+                                    <img class="oe_module_icon" t-att-src="kanban_image('isf.home.dashboard.action', 'icon', record.id.value)" />
+                                </a>
+                                <div class="oe_module_desc oe_loempia_details">
+                                    <h4>
+                                        <a type="object" name="route_to" >
+                                            <field name="name"/>
+                                        </a>
+                                    </h4>
+                                    <p class="oe_module_name">
+                                        <field name="description"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_isf_home_dashboard_start" model="ir.actions.act_window" >
+            <field name="name">Start</field>
+            <field name="res_model">isf.home.dashboard.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_isf_home_dashboard_start_homeboard"/>
+        </record>
+
+        <record model="ir.ui.view" id="view_isf_home_dashboard_action_search">
+                <field name="name">isf.home.dashboard.action.search</field>
+                <field name="model">isf.home.dashboard.action</field>
+                <field name="arch" type="xml">
+                    <search string="Actions">
+                        <field name="name" string="Action name" />
+                        <field name="action" string="Action"/>
+                        <field name="group" string="Group"/>
+                        <group string="Filters">
+                            <filter string="Groups" name="group" domain="[]" context="{'group_by' : 'group'}"/>
+                        </group>
+                    </search>
+                </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_isf_home_dashboard_action_tree">
+            <field name="name">isf.home.dashboard.action.tree</field>
+            <field name="model">isf.home.dashboard.action</field>
+            <field name="arch" type="xml">
+                <tree string="Actions">
+                    <field name="sequence" string="Sequence" />
                     <field name="name" string="Action name" />
                     <field name="action" string="Action"/>
-                    <field name="group" string="Group"/>
-                    <group string="Filters">
-                        <filter string="Groups" name="group" domain="[]" context="{'group_by' : 'group'}"/>
-                    </group>
-                </search>
+                </tree>
             </field>
-    </record>
+        </record>
 
-    <record model="ir.ui.view" id="view_isf_home_dashboard_action_tree">
-        <field name="name">isf.home.dashboard.action.tree</field>
-        <field name="model">isf.home.dashboard.action</field>
-        <field name="arch" type="xml">
-            <tree string="Actions">
-                <field name="sequence" string="Sequence" />
-                <field name="name" string="Action name" />
-                <field name="action" string="Action"/>
-            </tree>
-        </field>
-    </record>
+        <record model="ir.ui.view" id="view_isf_home_dashboard_action_form">
+            <field name="name">isf.home.dashboard.action.form</field>
+            <field name="model">isf.home.dashboard.action</field>
+            <field name="arch" type="xml">
+                <form string="Actions" version="7.0">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <field name="action" string="Action" widget="one2one_tags"/>
+                            <field name="name"/>
+                            <field name="group"/>
+                            <field name="sequence"/>
+                            <field name="icon"/>
+                            <field name="description"/>
+                            <field name="oe_group"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-    <record model="ir.ui.view" id="view_isf_home_dashboard_action_form">
-        <field name="name">isf.home.dashboard.action.form</field>
-        <field name="model">isf.home.dashboard.action</field>
-        <field name="arch" type="xml">
-            <form string="Actions" version="7.0">
-                <sheet>
-                    <group colspan="4" col="2">
-                        <field name="action" string="Action" widget="one2one_tags"/>
-                        <field name="name"/>
-                        <field name="group"/>
-                        <field name="sequence"/>
-                        <field name="icon"/>
-                        <field name="description"/>
-                        <field name="oe_group"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+        <record model="ir.actions.act_window" id="action_isf_home_dashboard_configactions">
+            <field name="name">Home Dashboard Actions</field>
+            <field name="res_model">isf.home.dashboard.action</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="multi">True</field>
+            <field name="search_view_id" ref="view_isf_home_dashboard_action_search"/>
+        </record>
 
-    <record model="ir.actions.act_window" id="action_isf_home_dashboard_configactions">
-        <field name="name">Home Dashboard Actions</field>
-        <field name="res_model">isf.home.dashboard.action</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="multi">True</field>
-        <field name="search_view_id" ref="view_isf_home_dashboard_action_search"/>
-    </record>
+        <record model="ir.ui.view" id="view_isf_home_dashboard_action_group_form">
+            <field name="name">isf.home.dashboard.action.group.form</field>
+            <field name="model">isf.home.dashboard.action.group</field>
+            <field name="arch" type="xml">
+                <form string="Actions" version="7.0">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <field name="name"/>
+                            <field name="dashboard_id"/>
+                            <field name="oe_group"/>
+                            <field name="description"/>
+                            <field name="sequence"/>
+                            <field name="actions" widget="one2many_list" context="{'default_group': id}"/>
+                        </group>
+                        <notebook>
+                            <page string="Security">
+                                <!--field name="groups_id"/-->
+                            </page>
+                        </notebook>
 
-    <record model="ir.ui.view" id="view_isf_home_dashboard_action_group_form">
-        <field name="name">isf.home.dashboard.action.group.form</field>
-        <field name="model">isf.home.dashboard.action.group</field>
-        <field name="arch" type="xml">
-            <form string="Actions" version="7.0">
-                <sheet>
-                    <group colspan="4" col="2">
-                        <field name="name"/>
-                        <field name="dashboard_id"/>
-                        <field name="oe_group"/>
-                        <field name="description"/>
-                        <field name="sequence"/>
-                        <field name="actions" widget="one2many_list" context="{'default_group': id}"/>
-                    </group>
-                    <notebook>
-                        <page string="Security">
-                            <!--field name="groups_id"/-->
-                        </page>
-                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-                </sheet>
-            </form>
-        </field>
-    </record>
+        <record model="ir.ui.view" id="view_isf_home_dashboard_action_group_tree">
+            <field name="name">isf.home.dashboard.action.group.tree</field>
+            <field name="model">isf.home.dashboard.action.group</field>
+            <field name="arch" type="xml">
+                <tree string="Action Groups">
+                    <field name="dashboard_id" />
+                    <field name="name" string="Group name" />
+                    <field name="sequence" string="Sequence" />
+                    <field name="actions" string="Actions"/>
+                </tree>
+            </field>
+        </record>
 
-    <record model="ir.ui.view" id="view_isf_home_dashboard_action_group_tree">
-        <field name="name">isf.home.dashboard.action.group.tree</field>
-        <field name="model">isf.home.dashboard.action.group</field>
-        <field name="arch" type="xml">
-            <tree string="Action Groups">
-                <field name="dashboard_id" />
-                <field name="name" string="Group name" />
-                <field name="sequence" string="Sequence" />
-                <field name="actions" string="Actions"/>
-            </tree>
-        </field>
-    </record>
+        <record model="ir.actions.act_window" id="action_isf_home_dashboard_configgroups">
+            <field name="name">Home Dashboard Groups</field>
+            <field name="res_model">isf.home.dashboard.action.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="multi">True</field>
+        </record>
 
-    <record model="ir.actions.act_window" id="action_isf_home_dashboard_configgroups">
-        <field name="name">Home Dashboard Groups</field>
-        <field name="res_model">isf.home.dashboard.action.group</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="multi">True</field>
-    </record>
+        <record model="ir.ui.view" id="view_isf_home_dashboard_action_tree">
+            <field name="name">isf.home.dashboard.action.tree</field>
+            <field name="model">isf.home.dashboard.action</field>
+            <field name="arch" type="xml">
+                <tree string="Actions">
+                    <field name="name" string="Name" />
+                    <field name="sequence" string="Sequence" />
+                    <field name="group" string="Group"/>
+                </tree>
+            </field>
+        </record>
 
-    <record model="ir.ui.view" id="view_isf_home_dashboard_action_tree">
-        <field name="name">isf.home.dashboard.action.tree</field>
-        <field name="model">isf.home.dashboard.action</field>
-        <field name="arch" type="xml">
-            <tree string="Actions">
-                <field name="name" string="Name" />
-                <field name="sequence" string="Sequence" />
-                <field name="group" string="Group"/>
-            </tree>
-        </field>
-    </record>
+        <record model="ir.actions.act_window" id="action_isf_home_dashboard_configactions">
+            <field name="name">Home Dashboard Actions</field>
+            <field name="res_model">isf.home.dashboard.action</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="multi">True</field>
+        </record>
 
-    <record model="ir.actions.act_window" id="action_isf_home_dashboard_configactions">
-        <field name="name">Home Dashboard Actions</field>
-        <field name="res_model">isf.home.dashboard.action</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="multi">True</field>
-    </record>
+        <record model="ir.ui.view" id="view_isf_home_dashboard_form">
+            <field name="name">isf.home.dashboard.form</field>
+            <field name="model">isf.home.dashboard</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard" version="7.0">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="groups" widget="one2many_list" context="{'default_dashboard_id': id}"/>
+                            <field name="actions" widget="one2many_list" context="{'default_dashboard_id': id}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-    <record model="ir.ui.view" id="view_isf_home_dashboard_form">
-        <field name="name">isf.home.dashboard.form</field>
-        <field name="model">isf.home.dashboard</field>
-        <field name="arch" type="xml">
-            <form string="Dashboard" version="7.0">
-                <sheet>
-                    <group colspan="4" col="2">
-                        <field name="name"/>
-                        <field name="description"/>
-                        <field name="groups" widget="one2many_list" context="{'default_dashboard_id': id}"/>
-                        <field name="actions" widget="one2many_list" context="{'default_dashboard_id': id}"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+        <record model="ir.ui.view" id="view_isf_home_dashboard_tree">
+            <field name="name">isf.home.dashboard.tree</field>
+            <field name="model">isf.home.dashboard</field>
+            <field name="arch" type="xml">
+                <tree string="Dashboards">
+                    <field name="name" string="Name" />
+                    <field name="description" string="Description"/>
+                    <field name="groups" string="Groups"/>
+                    <field name="actions" string="Actions"/>
+                </tree>
+            </field>
+        </record>
 
-    <record model="ir.ui.view" id="view_isf_home_dashboard_tree">
-        <field name="name">isf.home.dashboard.tree</field>
-        <field name="model">isf.home.dashboard</field>
-        <field name="arch" type="xml">
-            <tree string="Dashboards">
-                <field name="name" string="Name" />
-                <field name="description" string="Description"/>
-                <field name="groups" string="Groups"/>
-                <field name="actions" string="Actions"/>
-            </tree>
-        </field>
-    </record>
+        <record model="ir.actions.act_window" id="action_isf_home_dashboard_config">
+            <field name="name">Dashboards</field>
+            <field name="res_model">isf.home.dashboard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="multi">True</field>
+        </record>
 
-    <record model="ir.actions.act_window" id="action_isf_home_dashboard_config">
-        <field name="name">Dashboards</field>
-        <field name="res_model">isf.home.dashboard</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="multi">True</field>
-    </record>
+        <!-- MENU -->
+        <menuitem name="Home Actions" 
+                  id="menu_isf_home_dashboard_config" 
+                  parent="base.menu_config"
+                  />
 
-    <!-- MENU -->
-    <menuitem name="Home Actions" 
-              id="menu_isf_home_dashboard_config" 
-              parent="base.menu_config"
-              />
+        <menuitem name="Dashboards" 
+                  id="menu_isf_home_dashboard_main_config" 
+                  parent="menu_isf_home_dashboard_config"
+                  action="action_isf_home_dashboard_config"
+                  />
 
-    <menuitem name="Dashboards" 
-              id="menu_isf_home_dashboard_main_config" 
-              parent="menu_isf_home_dashboard_config"
-              action="action_isf_home_dashboard_config"
-              />
+        <menuitem name="Groups" 
+                  id="menu_isf_home_dashboard_configgroups" 
+                  parent="menu_isf_home_dashboard_config"
+                  action="action_isf_home_dashboard_configgroups"
+                  />
 
-    <menuitem name="Groups" 
-              id="menu_isf_home_dashboard_configgroups" 
-              parent="menu_isf_home_dashboard_config"
-              action="action_isf_home_dashboard_configgroups"
-              />
+        <menuitem name="Actions" 
+                  id="menu_isf_home_dashboard_configctions" 
+                  parent="menu_isf_home_dashboard_config"
+                  action="action_isf_home_dashboard_configactions"
+                  />
 
-    <menuitem name="Actions" 
-              id="menu_isf_home_dashboard_configctions" 
-              parent="menu_isf_home_dashboard_config"
-              action="action_isf_home_dashboard_configactions"
-              />
-  </data>
+        <!-- example: -->
+        <record id="view_isf_home_dashboard_start_homeboard" model="ir.ui.view">
+            <field name="name">isf.home.dashboard.action.start.homeboard</field>
+            <field name="model">isf.home.dashboard.action</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <form version="7.0" string="Home Dashboard" title="Home Dashboard" edit="false" create="false" delete="false">
+                    <isf-home-dashboard collapse="false" sortable="false" />
+                </form>
+            </field>
+        </record>
+    </data>
 </openerp>
