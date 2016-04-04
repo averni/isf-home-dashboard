@@ -11,12 +11,12 @@
             <field name="sequence">0</field>
         </record>
 
-        <record id="demoapp_dashboard_action_test" model="isf.home.dashboard.action.group">
+        <record id="demoapp_dashboard_action_test" model="isf.home.dashboard.action">
             <field name="name">Test Action</field>
             <field name="description">Test Action description</field>
             <field name="sequence">0</field>
-            <field name="group_id" ref="demoapp_dashboard_actiongroup_test"/>
-            <field name="action_id" ref="base.company_normal_action_tree"/>
+            <field name="group" ref="demoapp_dashboard_actiongroup_test"/>
+            <field name="action" ref="base.company_normal_action_tree"/>
         </record>
 
         <record id="view_demoapp_dashboard" model="ir.ui.view">
