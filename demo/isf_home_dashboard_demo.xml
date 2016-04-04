@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="demoapp_dashboard" model="isf.home.dashboard">
+            <field name="name">DemoApp Dashboard</field>
+        </record>
+
+        <record id="demoapp_dashboard_actiongroup_test" model="isf.home.dashboard.action.group">
+            <field name="dashboard_id" ref="demoapp_dashboard"/>
+            <field name="name">Test Group</field>
+            <field name="sequence">0</field>
+        </record>
+
+        <record id="demoapp_dashboard_action_test" model="isf.home.dashboard.action.group">
+            <field name="name">Test Action</field>
+            <field name="description">Test Action description</field>
+            <field name="sequence">0</field>
+            <field name="group_id" ref="demoapp_dashboard_actiongroup_test"/>
+            <field name="action_id" ref="base.company_normal_action_tree"/>
+        </record>
+
+        <record id="view_demoapp_dashboard" model="ir.ui.view">
+            <field name="name">demoapp.dashboard</field>
+            <field name="model">isf.home.dashboard.action</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <form version="7.0" string="DemoApp Dashboard" title="DemoApp Dashboard" edit="false" create="false" delete="false">
+                    <isf-home-dashboard name="DemoApp Dashboard" collapse="false" sortable="false" />
+                </form>
+            </field>
+        </record>
+
+        <record id="action_demoapp_homedashboard" model="ir.actions.act_window" >
+            <field name="name">DemoApp Dashboard</field>
+            <field name="res_model">isf.home.dashboard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_demoapp_dashboard"/>
+        </record>
+
+        <menuitem name="DemoApp" id="demoapp_menu" sequence="0" />
+
+        <menuitem name="Home" 
+                  id="demoapp_home_menu" 
+                  parent="demoapp_menu" 
+                  sequence="1"
+                  />
+        <menuitem name="Dashboard" 
+                  id="demoapp_dashboard_menu" 
+                  parent="demoapp_home_menu" 
+                  action="action_demoapp_homedashboard"
+                  />
+    </data>
+</openerp>

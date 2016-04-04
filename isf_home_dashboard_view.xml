@@ -226,17 +226,5 @@
                   parent="menu_isf_home_dashboard_config"
                   action="action_isf_home_dashboard_configactions"
                   />
-
-        <!-- example: -->
-        <record id="view_isf_home_dashboard_start_homeboard" model="ir.ui.view">
-            <field name="name">isf.home.dashboard.action.start.homeboard</field>
-            <field name="model">isf.home.dashboard.action</field>
-            <field name="priority">100</field>
-            <field name="arch" type="xml">
-                <form version="7.0" string="Home Dashboard" title="Home Dashboard" edit="false" create="false" delete="false">
-                    <isf-home-dashboard collapse="false" sortable="false" />
-                </form>
-            </field>
-        </record>
     </data>
 </openerp>

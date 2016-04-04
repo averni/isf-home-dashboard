@@ -19,7 +19,9 @@ Add a customizable Home Tab
         'isf_home_dashboard_view.xml',
         'data/isf.home.dashboard.action.group.csv'
     ],
-    'demo': [],
+    'demo': [
+        'demo/isf_home_dashboard_demo.xml'
+    ],
     'qweb' : [
         "static/src/xml/isf_home_dashboard_templates.xml",
     ],
