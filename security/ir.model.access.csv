@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+isf_home_dashboard_action,isf.home.dashboard.action all,model_isf_home_dashboard_action,base.group_user,1,0,0,0
+isf_home_dashboard_action_group,isf.home.dashboard.action.group all,model_isf_home_dashboard_action_group,base.group_user,1,0,0,0

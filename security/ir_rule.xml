@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+   
+    <record id="property_rule_isf_home" model="ir.rule">
+        <field name="name">ISF Home Dashboard User</field>
+        <field name="model_id" ref="model_isf_home_dashboard_action"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="global" eval="True"/>
+    </record>
+    
+  </data>
+</openerp>

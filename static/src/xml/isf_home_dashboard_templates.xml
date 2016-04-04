@@ -1,0 +1,41 @@
+<template>
+    <t t-name="ISFHomeDashBoard">
+        <div class="oe_isf_home_dashboard_board">
+            <div class="isf_home_dashboard_groups">
+                <t t-foreach="node.children" t-as="group" t-if="group.tag == 'isf-home-dashboard-group'" t-call="ISFHomeDashBoard.group" />
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ISFHomeDashBoard.group">
+        <div class="oe_ihd_group">
+            <div class="oe_ihd_group_header">
+                <span class="oe_ihd_group_name" style="display: inline"><t t-esc="group.attrs['title']"/></span> <a class="oe_ihd_group_toggle">close</a>
+            </div>
+            <div class="oe_ihd_group_body">
+                <t t-foreach="group.children" t-as="action" t.if="action.tag == 'isf-home-dashboard-action'" t-call="ISFHomeDashBoard.action" />
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ISFHomeDashBoard.action">
+        <div class="oe_ihd_record">
+            <div class="oe_module_vignette" style="min-height: 88px;">
+                <a data-type="object" data-name="route_to" href="#" class="oe_ihd_action oe_ihd_action_a" t-att-aid="action.attrs['id']"> 
+                    <img class="oe_module_icon" t-att="{'src': 'data:image/png;base64,' + action.attrs['icon']}" t-if="action.attrs['icon'] != ''"/>
+                    <img class="oe_module_icon" src="/web/static/src/img/placeholder.png" t-if="action.attrs['icon'] == ''" />
+                </a>
+                <div class="oe_module_desc oe_loempia_details">
+                    <h4>
+                        <a data-type="object" data-name="route_to" href="#" class="oe_ihd_action oe_ihd_action_a" t-att-aid="action.attrs['id']"> 
+                            <t t-esc="action.attrs['name']"/>
+                        </a>
+                    </h4>
+                    <p class="oe_module_name">
+                        <t t-esc="action.attrs['description']"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
