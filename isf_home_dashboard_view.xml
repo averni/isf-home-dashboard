@@ -34,15 +34,6 @@
             </field>
         </record>
 
-        <record id="action_isf_home_dashboard_start" model="ir.actions.act_window" >
-            <field name="name">Start</field>
-            <field name="res_model">isf.home.dashboard.action</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_isf_home_dashboard_start_homeboard"/>
-        </record>
-
         <record model="ir.ui.view" id="view_isf_home_dashboard_action_search">
                 <field name="name">isf.home.dashboard.action.search</field>
                 <field name="model">isf.home.dashboard.action</field>
